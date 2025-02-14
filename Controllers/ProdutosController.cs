@@ -33,6 +33,13 @@ namespace CatalogAPI.Controllers
 			return produto;
 		}
 
+		[HttpGet("ByCategory/{categoriaId:int}")]
+		public ActionResult<IEnumerable<Produto>> productsByCategory (int categoriaId)
+		{
+			IEnumerable<Produto>? produtos = _context.Produtos.Where(p => p.CategoriaId == categoriaId);
+			return Ok(produtos);
+		}
+
 		[HttpPost]
 		public ActionResult Post(Produto produto)
 		{
